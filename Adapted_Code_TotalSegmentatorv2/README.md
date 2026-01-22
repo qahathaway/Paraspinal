@@ -3,14 +3,21 @@
 #### Step-1-NIFTI.py
 Convert DICOM files into a single NIFTI file
 
-#### Step-2-Whole-Vertebrae.sh
-Use the task "vertebrae_body" to segment all of the vertebae on the chest CT
+#### Step-2-Paraspinal-Muscle.sh
+Use the task "autochthon_left" and "autochthon_right" to segment the left and right paraspinal muscle, respectively.
 
-#### Step-3-Individual-Vertebrae.sh
-Use the task "roi_subset" to indvidually segment out only the vertebral bodies of T1-T10.
+#### Step-3-Combine-Paraspinal-Muscles.sh
+We combined the left and right paraspinal muscle volumes.
 
-#### Step-4-Remove-Cortical-Bone.py
-Use spatial information from the "vertebrae_body" and "roi_subset" of T1-T10 to create individual masks of T1-T10 while also removing cortical bone.
+#### Step-4
+We have previously published how we utilized TotalSegmentator to extract verterbal body information here:
+https://pubmed.ncbi.nlm.nih.gov/40067103/
+
+Please refer to https://github.com/qahathaway/vBMD/tree/main/Adapted_Code_TotalSegmentatorv2 for further information.
+
+With the spatial information from the prior vertebral body extraction, we proceeded to extract level-by-level paraspinal muscle information.
+
+#### Step-5-
 
 #### Overview of Methods
 The original algorithm, TotalSegmentator v2 (1), has been recently developed using the nnU-net framework (2) on eight different clinical sites and 16 different scanners. Both 1.5- and 3.0-mm isotropic resolution CT scans were trained through batches of iterative annotation. Data augmentation was applied, and 1.5 mm slices were trained for 4,000 epochs, whereas 3.0 mm slices were trained for 8,000 epochs. The algorithm is capable of volumetric segmentation of 117 anatomic structures from a wide variety of CT acquisitions, demonstrating its generalizability (1). The volumetrically segmented structures include vertebral bodies and paraspinal muscles with DICE coefficients of 0.94 on internal testing and 0.93 on external testing for all anatomical regions measured. Using Python 3.9.19, DICOM images with the primary axial sequence were selected and converted to NIFTI format using nibabel (v.5.2.1) and pydicom (v.2.4.4). Using TotalSegmentator (v2.1.0) (1) and the nnU-net architecture (2), 3D segmentation of the vertebral body for T1-T10 was accomplished, with distinct modifications.
