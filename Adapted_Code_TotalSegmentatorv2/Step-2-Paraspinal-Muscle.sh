@@ -10,8 +10,8 @@
 module load anaconda
 conda activate TotalSeg
 
-for FILE in /home/sdemehr1/data_sdemehr1/MESA_Exam6_NIFTI/*.nii;
+for FILE in /path/to/NIFTI/repository/*.nii;
 do filename=$(basename "$FILE");
 filename="${filename%.*}";
-TotalSegmentator -i $FILE -o /home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Segmentations2/$filename -ta total --roi_subset autochthon_left autochthon_right;
+TotalSegmentator -i $FILE -o /path/to/segmentations/folder/$filename -ta total --roi_subset autochthon_left autochthon_right;
 done
