@@ -71,8 +71,3 @@ summary(sensitivity)
 plot(sensitivity)
 plot(sensitivity, sensitivity.of = "t-value")
 plot(sensitivity, type = "extreme")
-#  colnames(temp_data_2) <- c("Specificity", "Sensitivity", "Group", "AUC", "Method")
-#  colnames(temp_data_3) <- c("Specificity", "Sensitivity", "Group", "AUC", "Method")
-#  res_df <- rbind(res_df, temp_data_2)
-#  res_df <- rbind(res_df, temp_data_3)
-#}
