@@ -1,7 +1,7 @@
 # Radiomics extracted from AI-derived Regions-of-interest (ROIs) using Pyradiomics
 
 ### Params File
-Access this file (with the Jupyter Notebook code) to utilize the same parameters as applied in the current study for radiomics through PyRadiomics
+Access this file to utilize the same parameters as applied in the current study for radiomics through PyRadiomics
 
 _Important version information for replicating_: Python (3.9.19), PyRadiomics (v3.1.0), Numpy (v1.26.4), SimpleITK (v2.3.1), and PyWavelet (v1.5.0)
 
