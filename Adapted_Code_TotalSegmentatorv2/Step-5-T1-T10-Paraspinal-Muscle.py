@@ -14,15 +14,15 @@ import six
 import radiomics
 from radiomics import featureextractor
 
-dataDir = '/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Radiomics'
-radiomicsCSV = os.path.join(dataDir, 'RadiomicsPara4-Exam6.csv')
+dataDir = '/path/to/save/radiomics'
+radiomicsCSV = os.path.join(dataDir, 'Radiomics.csv')
 params = os.path.join(dataDir, "Params.yaml")
 headers = None
 
-for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NIFTI/MESA4*.nii")):
-    for scanFilePath2 in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Segmentations2Comb/MESA4*.nii.gz")):
+for scanFilePath in sorted(glob.glob("/path/to/NIFTI/*.nii")):
+    for scanFilePath2 in sorted(glob.glob("/path/to/combined/segmentations/*.nii.gz")):
         if scanFilePath[46:57] == scanFilePath2[71:82]:
-            for scanFilePath3 in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Vert/MESA4*.nii.gz"), key=lambda name: (name[62:73], int(os.path.basename(name)[13:-12]))):
+            for scanFilePath3 in sorted(glob.glob("/path/to/vertebral/segementations/*.nii.gz"), key=lambda name: (name[62:73], int(os.path.basename(name)[13:-12]))):
                 if scanFilePath2[71:82] == scanFilePath3[62:73]:
                     path, filenames = os.path.split(scanFilePath3)
                     path2 = os.path.basename(path)
@@ -52,8 +52,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T1_img = nib.Nifti1Image(T1, scan2.affine)
-                            nib.save(T1_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T1_Para_Mask.nii.gz")
-                            T1FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T1_Para_Mask.nii.gz"
+                            nib.save(T1_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T1_Para_Mask.nii.gz")
+                            T1FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T1_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT1 = extractor.execute(scanFilePath, T1FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -94,8 +94,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T2_img = nib.Nifti1Image(T2, scan2.affine)
-                            nib.save(T2_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T2_Para_Mask.nii.gz")
-                            T2FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T2_Para_Mask.nii.gz"
+                            nib.save(T2_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T2_Para_Mask.nii.gz")
+                            T2FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T2_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT2 = extractor.execute(scanFilePath, T2FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -136,8 +136,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T3_img = nib.Nifti1Image(T3, scan2.affine)
-                            nib.save(T3_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T3_Para_Mask.nii.gz")
-                            T3FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T3_Para_Mask.nii.gz"
+                            nib.save(T3_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T3_Para_Mask.nii.gz")
+                            T3FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T3_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT3 = extractor.execute(scanFilePath, T3FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -178,8 +178,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T4_img = nib.Nifti1Image(T4, scan2.affine)
-                            nib.save(T4_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T4_Para_Mask.nii.gz")
-                            T4FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T4_Para_Mask.nii.gz"
+                            nib.save(T4_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T4_Para_Mask.nii.gz")
+                            T4FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T4_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT4 = extractor.execute(scanFilePath, T4FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -220,8 +220,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T5_img = nib.Nifti1Image(T5, scan2.affine)
-                            nib.save(T5_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T5_Para_Mask.nii.gz")
-                            T5FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T5_Para_Mask.nii.gz"
+                            nib.save(T5_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T5_Para_Mask.nii.gz")
+                            T5FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T5_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT5 = extractor.execute(scanFilePath, T5FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -262,8 +262,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T6_img = nib.Nifti1Image(T6, scan2.affine)
-                            nib.save(T6_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T6_Para_Mask.nii.gz")
-                            T6FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T6_Para_Mask.nii.gz"
+                            nib.save(T6_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T6_Para_Mask.nii.gz")
+                            T6FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T6_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT6 = extractor.execute(scanFilePath, T6FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -304,8 +304,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T7_img = nib.Nifti1Image(T7, scan2.affine)
-                            nib.save(T7_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T7_Para_Mask.nii.gz")
-                            T7FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T7_Para_Mask.nii.gz"
+                            nib.save(T7_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T7_Para_Mask.nii.gz")
+                            T7FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T7_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT7 = extractor.execute(scanFilePath, T7FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -346,8 +346,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T8_img = nib.Nifti1Image(T8, scan2.affine)
-                            nib.save(T8_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T8_Para_Mask.nii.gz")
-                            T8FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T8_Para_Mask.nii.gz"
+                            nib.save(T8_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T8_Para_Mask.nii.gz")
+                            T8FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T8_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT8 = extractor.execute(scanFilePath, T8FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -388,8 +388,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T9_img = nib.Nifti1Image(T9, scan2.affine)
-                            nib.save(T9_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T9_Para_Mask.nii.gz")
-                            T9FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T9_Para_Mask.nii.gz"
+                            nib.save(T9_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T9_Para_Mask.nii.gz")
+                            T9FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T9_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT9 = extractor.execute(scanFilePath, T9FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
@@ -430,8 +430,8 @@ for scanFilePath in sorted(glob.glob("/home/sdemehr1/data_sdemehr1/MESA_Exam6_NI
                                     start+=1
                             
                             T10_img = nib.Nifti1Image(T10, scan2.affine)
-                            nib.save(T10_img, "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T10_Para_Mask.nii.gz")
-                            T10FilePath = "/home/sdemehr1/data_sdemehr1/TotalSegmentator_Exam6/Mask_Para/" + filenames[:11] + "_T10_Para_Mask.nii.gz"
+                            nib.save(T10_img, "/path/to/paraspinal/mask/" + filenames[:11] + "_T10_Para_Mask.nii.gz")
+                            T10FilePath = "/path/to/paraspinal/mask/" + filenames[:11] + "_T10_Para_Mask.nii.gz"
                             extractor = featureextractor.RadiomicsFeatureExtractor(params)
                             resultT10 = extractor.execute(scanFilePath, T10FilePath, label=1)
                             with open(radiomicsCSV, 'a') as outputFile:
